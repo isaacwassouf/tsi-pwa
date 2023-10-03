@@ -10,12 +10,14 @@ export enum ApiProblemKind {
 	unauthorized = 'unauthorized',
 	forbidden = 'forbidden',
 	gone = 'gone',
+	tooManyRequests = 'tooManyRequests',
 	conflict = 'conflict',
 	notAllowed = 'notAllowed',
 	notFound = 'not-found',
 	rejected = 'rejected',
 	unknown = 'unknown',
-	badData = 'bad-data'
+	badData = 'bad-data',
+	unprocessableEntity = 'unprocessable-entity'
 }
 
 export type GeneralApiProblem =
@@ -60,6 +62,10 @@ export type GeneralApiProblem =
 	 */
 	| { kind: ApiProblemKind.gone; error: Error }
 	/**
+	 * Resource requested is no longer available and will be available soon. This is a 429.
+	 */
+	| { kind: ApiProblemKind.tooManyRequests; error: Error }
+	/**
 	 * Resource requested is conflicting. This is a 409.
 	 */
 	| { kind: ApiProblemKind.conflict; error: Error }
@@ -74,7 +80,11 @@ export type GeneralApiProblem =
 	/**
 	 * The data we received is not in the expected format.
 	 */
-	| { kind: ApiProblemKind.badData; error: Error };
+	| { kind: ApiProblemKind.badData; error: Error }
+	/**
+	 * Unprocessable Entity. This is a 422.
+	 */
+	| { kind: ApiProblemKind.unprocessableEntity; error: Error };
 
 /**
  * Attempts to get a common cause of problems from an api response.
@@ -116,6 +126,10 @@ export function getGeneralApiProblem(response: ApiResponse<any>): GeneralApiProb
 					return { kind: ApiProblemKind.conflict, error: errorData };
 				case 410:
 					return { kind: ApiProblemKind.gone, error: errorData };
+				case 422:
+					return { kind: ApiProblemKind.unprocessableEntity, error: errorData };
+				case 429:
+					return { kind: ApiProblemKind.tooManyRequests, error: errorData };
 				default:
 					return { kind: ApiProblemKind.rejected, error: errorData };
 			}

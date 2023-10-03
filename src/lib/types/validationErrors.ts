@@ -1,6 +1,6 @@
 export type ValidationError = {
-	statusCode?: number;
-	message?: string;
-	errors?: any;
+	statusCode: number | undefined;
+	message: string | undefined;
+	errors: any | undefined;
 	data?: any;
-} | null;
+};
