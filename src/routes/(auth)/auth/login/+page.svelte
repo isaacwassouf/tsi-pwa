@@ -1,8 +1,12 @@
 <script lang="ts">
-	import type { LoginFormData } from '$lib/types/registeration';
+	import type { LoginFormData } from '$lib/types/authentication';
 	import { AuthAPI } from '$lib/services/api/auth-api';
 	import { ApiProblemKind } from '$lib/services/api/api-problem';
 	import { extractAPIErrorMessages } from '$lib/utils/extractErrorMessages';
+	import { goto } from '$app/navigation';
+	import type { EmptyResult } from '$lib/services/api/api.types';
+	import type { VerifiedUserResult } from '$lib/services/api/types/authentication';
+	import { user } from '$lib/stores/user';
 
 	// variables
 	let formData: LoginFormData = {
@@ -19,9 +23,19 @@
 		submittingForm = true;
 
 		try {
-			const result = await authAPI.login(formData);
+			const result: EmptyResult = await authAPI.login(formData);
 			if (result.kind === ApiProblemKind.ok) {
-				window.location.href = '/';
+				// set the user in the store
+				const result: VerifiedUserResult = await authAPI.verify();
+				if (result.kind === ApiProblemKind.ok) {
+					// set the user in the store
+					user.set(result.data.user);
+				} else {
+					console.warn(result);
+				}
+
+				// redirect to the home page
+				goto('/');
 			} else {
 				submitErrors = extractAPIErrorMessages(result.error);
 				console.warn(result);
@@ -98,7 +112,7 @@
 		class:disabled={submittingForm}
 		class:cursor-not-allowed={submittingForm}
 	>
-		Create account
+		Log in
 	</button>
 	<div class="text-sm font-medium text-gray-500 dark:text-gray-300">
 		Not registered? <a

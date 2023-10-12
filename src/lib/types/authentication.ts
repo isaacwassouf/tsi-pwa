@@ -1,3 +1,9 @@
+export interface VerifiedUser {
+    id: string;
+    name: string;
+    email: string;
+}
+
 export interface RegisterationFormData {
     firstName: string;
     lastName: string;

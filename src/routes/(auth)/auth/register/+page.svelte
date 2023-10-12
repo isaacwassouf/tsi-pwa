@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { RegisterationFormData } from '$lib/types/registeration';
+	import type { RegisterationFormData } from '$lib/types/authentication';
 	import { AuthAPI } from '$lib/services/api/auth-api';
 	import { ApiProblemKind } from '$lib/services/api/api-problem';
 	import { extractAPIErrorMessages } from '$lib/utils/extractErrorMessages';
