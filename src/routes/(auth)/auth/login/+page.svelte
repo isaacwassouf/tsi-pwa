@@ -35,7 +35,7 @@
 				}
 
 				// redirect to the home page
-				goto('/');
+				goto('/dashboard');
 			} else {
 				submitErrors = extractAPIErrorMessages(result.error);
 				console.warn(result);
