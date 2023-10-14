@@ -26,6 +26,9 @@ const config = {
 					900: '#A5371B'
 				}
 			}
+		},
+		boxShadow: {
+			keyCap: 'rgba(0, 0, 0, 0.15) 3px 3px 0px;'
 		}
 	}
 };

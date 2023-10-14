@@ -32,12 +32,12 @@ export class AuthAPI extends BaseAPI {
 
 			// send a POST request to /auth/login to login
 			const response: ApiResponse<any> = await this.api.apisauce.post(`auth/register`, {
-                first_name: registerFormData.firstName,
-                last_name: registerFormData.lastName,
-                email: registerFormData.email,
-                password: registerFormData.password,
-                password_confirmation: registerFormData.passwordConfirmation,
-            });
+				first_name: registerFormData.firstName,
+				last_name: registerFormData.lastName,
+				email: registerFormData.email,
+				password: registerFormData.password,
+				password_confirmation: registerFormData.passwordConfirmation
+			});
 
 			if (!response.ok) {
 				const problem = getGeneralApiProblem(response);
@@ -55,10 +55,10 @@ export class AuthAPI extends BaseAPI {
 			// send a GET request to /sanctum/csrf-cookie to get a CSRF token
 			await this.csrfCookie();
 
-		// send a POST request to /auth/login to login
+			// send a POST request to /auth/login to login
 			const response: ApiResponse<any> = await this.api.apisauce.post(`auth/login`, {
 				email: loginFormData.email,
-				password: loginFormData.password,
+				password: loginFormData.password
 			});
 
 			if (!response.ok) {
