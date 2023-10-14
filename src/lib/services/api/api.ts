@@ -40,7 +40,7 @@ export default class Api {
 			timeout: this.config.timeout,
 			withCredentials: true,
 			headers: {
-				Accept: 'application/json',
+				Accept: 'application/json'
 			}
 		});
 	}

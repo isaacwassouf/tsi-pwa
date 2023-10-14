@@ -1,8 +1,8 @@
-import type { VerifiedUser } from "$lib/types/authentication";
-import type { GeneralApiProblem } from "../api-problem";
+import type { VerifiedUser } from '$lib/types/authentication';
+import type { GeneralApiProblem } from '../api-problem';
 
 export interface VerifiedUserWrapper {
-    user: VerifiedUser;
+	user: VerifiedUser;
 }
 
-export type VerifiedUserResult = {kind: "ok", data: VerifiedUserWrapper} | GeneralApiProblem;
+export type VerifiedUserResult = { kind: 'ok'; data: VerifiedUserWrapper } | GeneralApiProblem;

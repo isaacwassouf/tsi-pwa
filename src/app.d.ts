@@ -1,6 +1,6 @@
 // See https://kit.svelte.dev/docs/types#app
 
-import type { VerifiedUser } from "$lib/types/authentication";
+import type { VerifiedUser } from '$lib/types/authentication';
 
 // for information about these interfaces
 declare global {
