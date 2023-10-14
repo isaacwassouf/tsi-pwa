@@ -28,7 +28,8 @@ const config = {
 			}
 		},
 		boxShadow: {
-			keyCap: 'rgba(0, 0, 0, 0.15) 3px 3px 0px;'
+			keyCap: 'rgba(0, 0, 0, 0.15) 3px 3px 0px;',
+			keyCapDark: 'rgb(255 255 255 / 15%) 3px 3px 0px;'
 		}
 	}
 };
