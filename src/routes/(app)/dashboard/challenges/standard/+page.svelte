@@ -1,5 +1,5 @@
 <script lang="ts">
-    import {Card, Kbd} from 'flowbite-svelte';
+    import {Card} from 'flowbite-svelte';
     import type {PageServerData} from "./$types";
     import type {Quote} from "$lib/services/api/types/challenges";
 
