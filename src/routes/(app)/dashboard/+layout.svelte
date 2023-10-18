@@ -1,6 +1,32 @@
 <script lang="ts">
     import {Avatar, Dropdown, DropdownItem} from "flowbite-svelte";
     import {user as userStore} from '$lib/stores/user';
+	import { onMount } from "svelte";
+    import {variables} from '$lib/config';
+
+    // variables
+    let avatarURL: string;
+
+    // logic
+    const loadAvatar = async () => {
+        // create the url for dicebear
+        const url = new URL(variables.DICEBEAR_URL);
+        url.searchParams.append('seed', $userStore.email);
+
+        // send the request to the third party service to generate an avatar
+        const response = await fetch(url);
+
+        if (response.ok){
+            // parse the avatar to a blob
+            const avatarBlob = await response.blob();
+            // create Url to assign from the blob in order to assign it to the image src attribute
+            avatarURL = URL.createObjectURL(avatarBlob);
+        }
+    }
+
+    onMount(() => {
+        loadAvatar();
+    });
 </script>
 
 <nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
@@ -20,7 +46,7 @@
             </div>
             <div class="flex items-center">
                 <div class="flex items-center ml-3">
-                    <Avatar class="acs" src="/images/profile-picture-3.webp" dot={{ color: 'green' }} />
+                    <Avatar class="acs" src={avatarURL} dot={{ color: 'green' }} />
                     <Dropdown triggeredBy=".acs">
                         <div slot="header" class="px-4 py-2">
                             <span class="block text-sm text-gray-900 dark:text-white">{$userStore.name}</span>
