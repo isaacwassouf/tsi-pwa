@@ -72,6 +72,21 @@ export class AuthAPI extends BaseAPI {
 		}
 	}
 
+	async logout() : Promise<EmptyResult> {
+		try {
+			const response: ApiResponse<any> = await this.api.apisauce.post(`auth/logout`);
+
+			if (!response.ok) {
+				const problem = getGeneralApiProblem(response);
+				if (problem) return problem;
+			}
+
+			return { kind: ApiProblemKind.ok };
+		} catch (e) {
+			return { kind: ApiProblemKind.badData, error: null };
+		}
+	}
+
 	async verify(): Promise<VerifiedUserResult> {
 		try {
 			// send a POST request to /auth/login to login

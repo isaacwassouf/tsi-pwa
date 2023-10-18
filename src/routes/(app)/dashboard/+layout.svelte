@@ -3,9 +3,14 @@
     import {user as userStore} from '$lib/stores/user';
 	import { onMount } from "svelte";
     import {variables} from '$lib/config';
+	import { AuthAPI } from "$lib/services/api/auth-api";
+	import type { EmptyResult } from "$lib/services/api/api.types";
+	import { ApiProblemKind } from "$lib/services/api/api-problem";
+	import { goto } from "$app/navigation";
 
     // variables
     let avatarURL: string;
+    const authAPI = new AuthAPI();
 
     // logic
     const loadAvatar = async () => {
@@ -21,6 +26,20 @@
             const avatarBlob = await response.blob();
             // create Url to assign from the blob in order to assign it to the image src attribute
             avatarURL = URL.createObjectURL(avatarBlob);
+        }
+    }
+
+    const logoutUser = async () => {
+        try{
+            const result: EmptyResult = await authAPI.logout();
+
+            if (result.kind === ApiProblemKind.ok){
+                goto('/auth/login');
+            }else{
+                console.log(result.error);
+            }
+        }catch(e){
+            console.error(e);
         }
     }
 
@@ -55,7 +74,7 @@
                         <DropdownItem>Dashboard</DropdownItem>
                         <DropdownItem>Settings</DropdownItem>
                         <DropdownItem>Earnings</DropdownItem>
-                        <DropdownItem slot="footer">Sign out</DropdownItem>
+                        <DropdownItem slot="footer" on:click={() => logoutUser()} >Sign out</DropdownItem>
                     </Dropdown>
                 </div>
             </div>
