@@ -72,7 +72,7 @@ export class AuthAPI extends BaseAPI {
 		}
 	}
 
-	async logout() : Promise<EmptyResult> {
+	async logout(): Promise<EmptyResult> {
 		try {
 			const response: ApiResponse<any> = await this.api.apisauce.post(`auth/logout`);
 

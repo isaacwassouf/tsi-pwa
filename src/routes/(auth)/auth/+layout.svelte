@@ -5,7 +5,7 @@
 <div class="flex h-screen">
 	<div class="w-1/2 flex flex-col justify-center items-center gap-16 dark:bg-gray-800">
 		<div class="w-1/2 flex justify-center items-center dark:text-white">
-			<h1 class="font-bold text-6xl">Typing Speed Improvement </h1>
+			<h1 class="font-bold text-6xl">Typing Speed Improvement</h1>
 		</div>
 
 		<div class="flex flex-col justify-center items-center gap-4 select-none">
