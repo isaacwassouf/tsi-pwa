@@ -31,13 +31,14 @@
 	const handleSubmit = async () => {        
         submitting = true;
         try{
-            const result: EmptyResult = await accountAPI.updateGeneralInformation($userStore.id);
+            const result: EmptyResult = await accountAPI.updateGeneralInformation(generalInfoFormData);
             if(result.kind === ApiProblemKind.ok){
                 // set the user in the store
 				const result: VerifiedUserResult = await authAPI.verify();
 				if (result.kind === ApiProblemKind.ok) {
 					// set the user in the store
 					userStore.set(result.data.user);
+					editable = false;
 				} else {
 					console.warn(result);
 				}

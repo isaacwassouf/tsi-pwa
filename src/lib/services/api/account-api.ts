@@ -2,15 +2,23 @@ import type { ApiResponse } from 'apisauce';
 import { ApiProblemKind, getGeneralApiProblem } from '$lib/services/api/api-problem';
 import { BaseAPI } from '$lib/services/api/base-api';
 import type { EmptyResult } from '$lib/services/api/api.types';
+import { AuthAPI } from './auth-api';
+import type { GeneralAccountInformation } from '$lib/types/account';
 
 export class AccountAPI extends BaseAPI {
 	constructor() {
 		super();
 	}
 
-	async updateGeneralInformation(userId: number): Promise<EmptyResult> {
+	async updateGeneralInformation(data: GeneralAccountInformation): Promise<EmptyResult> {
+		const authAPI = new AuthAPI();
+		await authAPI.csrfCookie();
 		try {
-			const response: ApiResponse<any> = await this.api.apisauce.patch(`users/${userId}/general`);
+			const response: ApiResponse<any> = await this.api.apisauce.patch(`users/general`, {
+				first_name: data.firstName,
+				last_name: data.lastName,
+				email: data.email,
+			});
 
 			if (!response.ok) {
 				const problem = getGeneralApiProblem(response);
