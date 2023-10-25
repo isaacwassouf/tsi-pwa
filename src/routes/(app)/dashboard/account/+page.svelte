@@ -1,5 +1,6 @@
 <script lang="ts">
-	import ViewEditGeneralInfo from '$lib/components/account/ViewEditGeneralInfo.svelte';
+	import EditPassword from '$lib/components/account/EditPassword.svelte';
+import ViewEditGeneralInfo from '$lib/components/account/ViewEditGeneralInfo.svelte';
 	import { variables } from '$lib/config';
 	import { user as userStore } from '$lib/stores/user';
 	import { Avatar } from 'flowbite-svelte';
@@ -114,68 +115,6 @@
 
 	<div class="flex gap-4">
 		<ViewEditGeneralInfo />
-		<div
-			class="w-2/3 p-2 h-fit bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700"
-		>
-			<div class="flex items-center mb-4">
-				<h3 class="text-xl font-semibold dark:text-white">Password Information</h3>
-
-				<button
-					type="button"
-					class="ml-auto text-blue-700 border border-gray-200 hover:bg-gray-100 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center mr-2 dark:border-gray-700 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-gray-700"
-				>
-					<svg
-						class="w-4 h-4 text-gray-800 dark:text-white"
-						aria-hidden="true"
-						xmlns="http://www.w3.org/2000/svg"
-						fill="currentColor"
-						viewBox="0 0 20 18"
-					>
-						<path
-							d="M12.687 14.408a3.01 3.01 0 0 1-1.533.821l-3.566.713a3 3 0 0 1-3.53-3.53l.713-3.566a3.01 3.01 0 0 1 .821-1.533L10.905 2H2.167A2.169 2.169 0 0 0 0 4.167v11.666A2.169 2.169 0 0 0 2.167 18h11.666A2.169 2.169 0 0 0 16 15.833V11.1l-3.313 3.308Zm5.53-9.065.546-.546a2.518 2.518 0 0 0 0-3.56 2.576 2.576 0 0 0-3.559 0l-.547.547 3.56 3.56Z"
-						/>
-						<path
-							d="M13.243 3.2 7.359 9.081a.5.5 0 0 0-.136.256L6.51 12.9a.5.5 0 0 0 .59.59l3.566-.713a.5.5 0 0 0 .255-.136L16.8 6.757 13.243 3.2Z"
-						/>
-					</svg>
-					<span class="sr-only">Edit account icon</span>
-				</button>
-			</div>
-			<label for="helper-text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-				>Current password</label
-			>
-			<input
-				type="password"
-				id="current_password"
-				aria-label="current_password"
-				class="mb-4 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-				disabled
-				readonly
-			/>
-
-			<label for="helper-text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-				>New password</label
-			>
-			<input
-				type="password"
-				id="new_pasword"
-				aria-label="new_pasword"
-				class="mb-4 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-				disabled
-				readonly
-			/>
-
-			<label for="helper-text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-				>Confirm password</label
-			>
-			<input
-				type="password"
-				id="new_pasword_confirmation"
-				aria-label="new_pasword_confirmation"
-				class="mb-4 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-				disabled
-				readonly
-			/>
-		</div>
+		<EditPassword />
 	</div>
 </div>

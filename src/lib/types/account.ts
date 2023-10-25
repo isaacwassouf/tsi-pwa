@@ -3,3 +3,9 @@ export interface GeneralAccountInformation{
     lastName: string,
     email: string,
 }
+
+export interface ChangePasswordFormData{
+    currentPassword: string,
+    newPassword: string,
+    newPasswordConfirmation: string,
+}
