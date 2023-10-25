@@ -7,6 +7,7 @@
 	import { user as userStore } from '$lib/stores/user';
 	import type { GeneralAccountInformation } from '$lib/types/account';
 	import { onMount } from 'svelte';
+	import toast, { Toaster } from 'svelte-french-toast';
 
 	//variables
 	let editable: boolean = false;
@@ -39,6 +40,11 @@
 					// set the user in the store
 					userStore.set(result.data.user);
 					editable = false;
+					toast.success("General Information Updated Successfully", {
+						className: "mb-2 mr-2",
+						position: "bottom-right",
+						duration: 4000
+					});
 				} else {
 					console.warn(result);
 				}
@@ -171,3 +177,5 @@
 		>
 	{/if}
 </div>
+
+<Toaster />

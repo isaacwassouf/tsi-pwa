@@ -3,6 +3,7 @@
 	import { ApiProblemKind } from "$lib/services/api/api-problem";
 	import type { EmptyResult } from "$lib/services/api/api.types";
 	import type { ChangePasswordFormData } from "$lib/types/account";
+	import toast, { Toaster } from 'svelte-french-toast';
 
 
     // variables
@@ -38,6 +39,12 @@
             if(result.kind === ApiProblemKind.ok){
                 editable = false;
                 resetChangePasswordFormData();
+
+                toast.success("Password changed successfully", {
+						className: "mb-2 mr-2",
+						position: "bottom-right",
+						duration: 4000
+					});
             }
         }catch(e){
             console.log(e);
@@ -163,3 +170,5 @@ class="w-2/3 p-2 h-fit bg-white border border-gray-200 rounded-lg shadow sm:p-8 
     >
 {/if}
 </div>
+
+<Toaster />

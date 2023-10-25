@@ -37,6 +37,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"apisauce": "^3.0.1"
+		"apisauce": "^3.0.1",
+		"svelte-french-toast": "^1.2.0"
 	}
 }
