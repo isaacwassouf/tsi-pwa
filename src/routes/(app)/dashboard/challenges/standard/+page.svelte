@@ -103,11 +103,7 @@
 				class="mb-2 flex flex-wrap justify-center items-center gap-1.5 text-2xl font-bold text-gray-900 dark:text-gray-400"
 			>
 				{#each words as word, ind}
-					{#if activeWordIndex === ind}
-						<Word {word} active={true} />
-					{:else}
-						<Word {word} active={false} />
-					{/if}
+					<Word {word} active={activeWordIndex === ind} />
 				{/each}
 			</div>
 
