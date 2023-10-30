@@ -5,11 +5,15 @@
 	import Word from '$lib/components/challenge/Word.svelte';
 	import { onMount } from 'svelte';
 	import ResultModal from '$lib/components/challenge/ResultModal.svelte';
+	import { ChallengeAPI } from '$lib/services/api/challenge-api';
+	import { ChallengeType, type StandardChallengeData } from '$lib/types/challenges';
+	import { ApiProblemKind } from '$lib/services/api/api-problem';
 
 	// props
 	export let data: PageServerData;
 
 	// variables
+	const challengeAPI = new ChallengeAPI();
 	let quote: Quote = data.quote;
 	let words = quote.content.split(' ');
 	let activeWordIndex: number = 0;
@@ -62,6 +66,14 @@
 
 				// open the model
 				modalOpen = true;
+
+				storeChallenge({
+					quote_id: quote._id,
+					wpm: wordsPerMinute,
+					time_taken: duration,
+					accuracy: accuracy,
+					challenge_type: ChallengeType.STANDARD,
+				});
 			}
 			return;
 		}
@@ -133,6 +145,18 @@
 		wordsPerMinute = 0;
 
 		inputField.focus();
+	};
+
+	const storeChallenge = async (challenge: StandardChallengeData) => {
+		try{
+			const response = await challengeAPI.store(challenge);
+
+			if(response.kind !== ApiProblemKind.ok){
+				console.log('challenge stored');
+			}
+		}catch(err){
+			console.log('error storing challenge', err);
+		}
 	};
 
 	// run the handler whenever the inputValue changes
