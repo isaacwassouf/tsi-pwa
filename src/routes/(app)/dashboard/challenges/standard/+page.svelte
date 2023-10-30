@@ -100,7 +100,7 @@
 	<div>
 		<Card class="text-center mx-8" size="xl" padding="xl">
 			<div
-				class="mb-2 flex flex-wrap justify-center items-center gap-1.5 text-2xl font-bold text-gray-900 dark:text-gray-400"
+				class="mb-2 flex flex-wrap justify-center items-center gap-1.5 text-2xl font-bold text-gray-500 dark:text-gray-400"
 			>
 				{#each words as word, ind}
 					<Word {word} active={activeWordIndex === ind} />
