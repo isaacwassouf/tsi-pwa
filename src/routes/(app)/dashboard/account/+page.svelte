@@ -1,6 +1,6 @@
 <script lang="ts">
 	import EditPassword from '$lib/components/account/EditPassword.svelte';
-import ViewEditGeneralInfo from '$lib/components/account/ViewEditGeneralInfo.svelte';
+	import ViewEditGeneralInfo from '$lib/components/account/ViewEditGeneralInfo.svelte';
 	import { variables } from '$lib/config';
 	import { user as userStore } from '$lib/stores/user';
 	import { Avatar } from 'flowbite-svelte';

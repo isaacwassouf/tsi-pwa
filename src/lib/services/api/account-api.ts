@@ -17,7 +17,7 @@ export class AccountAPI extends BaseAPI {
 			const response: ApiResponse<any> = await this.api.apisauce.patch(`users/general`, {
 				first_name: data.firstName,
 				last_name: data.lastName,
-				email: data.email,
+				email: data.email
 			});
 
 			if (!response.ok) {
@@ -38,7 +38,7 @@ export class AccountAPI extends BaseAPI {
 			const response: ApiResponse<any> = await this.api.apisauce.patch(`users/password`, {
 				current_password: data.currentPassword,
 				new_password: data.newPassword,
-				new_password_confirmation: data.newPasswordConfirmation,
+				new_password_confirmation: data.newPasswordConfirmation
 			});
 
 			if (!response.ok) {
