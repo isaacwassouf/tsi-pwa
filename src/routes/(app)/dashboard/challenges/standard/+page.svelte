@@ -1,9 +1,10 @@
 <script lang="ts">
-	import { Card, Modal } from 'flowbite-svelte';
+	import { Card } from 'flowbite-svelte';
 	import type { PageServerData } from './$types';
 	import type { Quote } from '$lib/services/api/types/challenges';
 	import Word from '$lib/components/challenge/Word.svelte';
 	import { onMount } from 'svelte';
+	import ResultModal from '$lib/components/challenge/ResultModal.svelte';
 
 	// props
 	export let data: PageServerData;
@@ -15,13 +16,13 @@
 	let inputValue: string = '';
 	let inputField: HTMLInputElement;
 	let mistakes: Map<string, string[]> = new Map<string, string[]>();
-	let modelOpen: boolean = false;
+	let modalOpen: boolean = false;
 	let firstInteractionWithInput: boolean = true;
 	let start: number;
 	let end: number;
-	let duration: number;
-	let accuracy: number;
-	let wordsPerMinute: number;
+	let duration: number = 0;
+	let accuracy: number = 0;
+	let wordsPerMinute: number = 0;
 
 	const registerMistake = (correct: string, mistake: string) => {
 		// if a mistake for this word exist push the new mistake
@@ -59,7 +60,7 @@
 				calculateMetrics();
 
 				// open the model
-				modelOpen = true;
+				modalOpen = true;
 			}
 			return;
 		}
@@ -93,32 +94,7 @@
 	});
 </script>
 
-<Modal title="Challenge details" bind:open={modelOpen} size={'md'} autoclose>
-	<div class="flex justify-between gap-10">
-		<kbd
-			class="w-1/3 px-4 py-4 text-center text-3xl font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg dark:bg-gray-600 dark:text-gray-100 dark:border-gray-500 dark:hover:bg-gray-500 dark:shadow-keyCapDark"
-			>{wordsPerMinute}</kbd
-		>
-
-		<kbd
-			class="w-1/3 px-4 py-4 text-center text-3xl font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg dark:bg-gray-600 dark:text-gray-100 dark:border-gray-500 dark:hover:bg-gray-500 dark:shadow-keyCapDark"
-			>{duration.toFixed(2)}{'s'}</kbd
-		>
-
-		<kbd
-			class="w-1/3 px-4 py-4 text-center text-3xl font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg dark:bg-gray-600 dark:text-gray-100 dark:border-gray-500 dark:hover:bg-gray-500 dark:shadow-keyCapDark"
-			>{accuracy.toFixed(2)}{'%'}</kbd
-		>
-	</div>
-
-	<div class="flex justify-between gap-10">
-		<div class="w-1/3 text-center text-3xl font-bold text-gray-800 dark:text-gray-400">WPM</div>
-
-		<div class="w-1/3 text-center text-3xl font-bold dark:text-gray-400">Duration</div>
-
-		<div class="w-1/3 text-center text-3xl font-bold dark:text-gray-400">Accuracy</div>
-	</div>
-</Modal>
+<ResultModal bind:modalOpen {wordsPerMinute} {duration} {accuracy} on:next={() => console.log('next')} on:repeat={() => console.log('repeat')} />
 
 <div class="flex justify-around items-center flex-col h-full dark:bg-gray-800">
 	<div>
