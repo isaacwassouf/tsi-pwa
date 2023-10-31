@@ -199,7 +199,7 @@
 		</div>
 	</div>
 {:else}
-	<div class="flex justify-evenly items-center flex-col h-full dark:bg-gray-800">
+	<div class="flex justify-evenly items-center flex-col h-full dark:bg-gray-900">
 		<div>
 			<Card class="text-center mx-8" size="xl" padding="xl">
 				<div

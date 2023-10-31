@@ -1,6 +1,6 @@
 export enum ChallengeType {
 	STANDARD = 'standard',
-	CUSTOM = 'countdown'
+	COUNTDOWN = 'countdown'
 }
 
 export interface StandardChallengeData {
@@ -9,4 +9,13 @@ export interface StandardChallengeData {
 	accuracy: number;
 	time_taken: number;
 	challenge_type: string;
+}
+
+export type ChallengeSortingBy = 'challenge_type' | 'wpm' | 'accuracy' | 'duration' | 'created_at';
+
+export type SortingDirection = 'asc' | 'desc';
+
+export interface ChallengeSortings {
+	sortBy: ChallengeSortingBy;
+	sortDirection: SortingDirection;
 }
