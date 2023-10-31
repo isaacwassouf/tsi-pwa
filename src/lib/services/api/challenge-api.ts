@@ -12,8 +12,8 @@ export class ChallengeAPI extends BaseAPI {
 	async store(challenge: StandardChallengeData): Promise<EmptyResult> {
 		try {
 			const response: ApiResponse<any> = await this.api.apisauce.post(`challenges`, {
-                ...challenge
-            });
+				...challenge
+			});
 
 			if (!response.ok) {
 				const problem = getGeneralApiProblem(response);

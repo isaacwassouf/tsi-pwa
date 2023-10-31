@@ -7,15 +7,15 @@
 	export let duration: number;
 	export let accuracy: number;
 
-    const dispatch = createEventDispatcher();
+	const dispatch = createEventDispatcher();
 
-    const handleNext = () => {
-        dispatch('next');
-    }
+	const handleNext = () => {
+		dispatch('next');
+	};
 
-    const handleRepeat = () => {
-        dispatch('repeat');
-    }
+	const handleRepeat = () => {
+		dispatch('repeat');
+	};
 </script>
 
 <Modal title="Challenge details" bind:open={modalOpen} size={'md'} autoclose>
@@ -53,7 +53,7 @@
 				<button
 					type="button"
 					class="text-white bg-gray-700 hover:bg-gray-800 font-medium rounded-lg text-xs px-3 py-1.5 mr-2 text-center inline-flex items-center dark:bg-gray-700 dark:hover:bg-gray-500"
-                    on:click={handleNext}
+					on:click={handleNext}
 				>
 					<svg
 						class="-ml-0.5 mr-1 h-3 w-3"
@@ -72,7 +72,7 @@
 				<button
 					type="button"
 					class="text-white bg-gray-700 hover:bg-gray-800 font-medium rounded-lg text-xs px-3 py-1.5 mr-2 text-center inline-flex items-center dark:bg-gray-700 dark:hover:bg-gray-500"
-                    on:click={handleRepeat}
+					on:click={handleRepeat}
 				>
 					<svg
 						class="-ml-0.5 mr-2 h-3 w-3"
