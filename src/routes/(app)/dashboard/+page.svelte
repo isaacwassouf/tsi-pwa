@@ -183,7 +183,9 @@
 					<tbody>
 						{#if challenges?.length > 0}
 							{#each challenges as challenge}
-								<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+								<tr
+									class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+								>
 									<th
 										scope="row"
 										class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"

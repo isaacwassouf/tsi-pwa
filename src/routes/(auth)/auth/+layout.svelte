@@ -3,7 +3,7 @@
 </script>
 
 <div class="flex h-screen">
-	<div class="w-1/2 flex flex-col justify-center items-center gap-16 dark:bg-gray-800">
+	<div class="w-1/2 flex flex-col justify-center items-center gap-16 dark:bg-gray-900">
 		<div class="w-1/2 flex justify-center items-center dark:text-white">
 			<h1 class="font-bold text-6xl">Typing Speed Improvement</h1>
 		</div>
@@ -54,7 +54,7 @@
 		</div>
 	</div>
 
-	<div class="w-1/2 flex items-center justify-center h-full dark:bg-gray-800">
+	<div class="w-1/2 flex items-center justify-center h-full dark:bg-gray-900">
 		<div
 			class="w-full max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700"
 		>
