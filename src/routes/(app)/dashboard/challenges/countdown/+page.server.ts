@@ -4,7 +4,7 @@ import { error } from '@sveltejs/kit';
 
 export const load: PageServerLoad = async (): Promise<{ quote: Quote }> => {
 	// get a random quote
-	const response: Response = await fetch('https://api.quotable.io/random');
+	const response: Response = await fetch('https://api.quotable.io/random?minLength=200');
 
 	if (!response.ok) {
 		throw error(response.status, response.statusText);
