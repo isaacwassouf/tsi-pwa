@@ -8,6 +8,7 @@
 	import { ChallengeAPI } from '$lib/services/api/challenge-api';
 	import { ChallengeType, type ChallengeData } from '$lib/types/challenges';
 	import { ApiProblemKind } from '$lib/services/api/api-problem';
+	import { goto } from '$app/navigation';
 
 	// props
 	export let data: PageServerData;
@@ -271,7 +272,7 @@
 					class="p-1.5 border w-fit border-gray-300 rounded-lg bg-gray-50 dark:border-gray-600 dark:bg-gray-600"
 					role="alert"
 				>
-					<div class="flex justify-center">
+					<div class="flex justify-center gap-2">
 						<button
 							type="button"
 							class="text-white bg-gray-700 hover:bg-gray-800 font-medium rounded-lg text-xs px-3 py-1.5 text-center inline-flex items-center dark:bg-gray-700 dark:hover:bg-gray-500"
@@ -289,6 +290,30 @@
 								/>
 							</svg>
 							Next
+						</button>
+
+						<button
+							type="button"
+							class="text-white bg-gray-700 hover:bg-gray-800 font-medium rounded-lg text-xs px-3 py-1.5 text-center inline-flex items-center dark:bg-gray-700 dark:hover:bg-gray-500"
+							on:click={() => goto('/dashboard/challenges')}
+						>
+							<svg
+								class="w-3 h-3 mr-2 text-gray-800 dark:text-white"
+								aria-hidden="true"
+								xmlns="http://www.w3.org/2000/svg"
+								fill="none"
+								viewBox="0 0 16 14"
+							>
+								<path
+									stroke="currentColor"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="m12 7 3-3-3-3m0 12H5.5a4.5 4.5 0 1 1 0-9H14"
+								/>
+							</svg>
+
+							Back
 						</button>
 					</div>
 				</div>
