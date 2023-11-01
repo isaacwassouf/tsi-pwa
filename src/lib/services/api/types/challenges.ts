@@ -1,4 +1,4 @@
-import type { GeneralApiProblem } from "../api-problem";
+import type { GeneralApiProblem } from '../api-problem';
 
 export interface Quote {
 	_id: string;
@@ -24,4 +24,4 @@ export interface ChallengeIndexWraper {
 	challenges: ChallengeIndex[];
 }
 
-export type ChallengeIndexResult = { kind: 'ok', data: ChallengeIndexWraper } | GeneralApiProblem;
+export type ChallengeIndexResult = { kind: 'ok'; data: ChallengeIndexWraper } | GeneralApiProblem;

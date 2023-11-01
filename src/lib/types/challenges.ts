@@ -11,7 +11,12 @@ export interface StandardChallengeData {
 	challenge_type: string;
 }
 
-export type ChallengeSortingBy = 'challenge_type' | 'wpm' | 'accuracy' | 'time_taken' | 'created_at';
+export type ChallengeSortingBy =
+	| 'challenge_type'
+	| 'wpm'
+	| 'accuracy'
+	| 'time_taken'
+	| 'created_at';
 
 export type SortingDirection = 'asc' | 'desc';
 

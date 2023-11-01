@@ -12,7 +12,9 @@ export class ChallengeAPI extends BaseAPI {
 
 	async index(sorting: ChallengeSortings): Promise<ChallengeIndexResult> {
 		try {
-			const response: ApiResponse<any> = await this.api.apisauce.get(`challenges?sort_by=${sorting.sortBy}&sort_direction=${sorting.sortDirection}`);
+			const response: ApiResponse<any> = await this.api.apisauce.get(
+				`challenges?sort_by=${sorting.sortBy}&sort_direction=${sorting.sortDirection}`
+			);
 
 			if (!response.ok) {
 				const problem = getGeneralApiProblem(response);
@@ -26,7 +28,6 @@ export class ChallengeAPI extends BaseAPI {
 			return { kind: ApiProblemKind.badData, error: null };
 		}
 	}
-
 
 	async store(challenge: StandardChallengeData): Promise<EmptyResult> {
 		try {
