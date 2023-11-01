@@ -6,7 +6,7 @@
 	import { onDestroy, onMount } from 'svelte';
 	import ResultModal from '$lib/components/challenge/ResultModal.svelte';
 	import { ChallengeAPI } from '$lib/services/api/challenge-api';
-	import { ChallengeType, type StandardChallengeData } from '$lib/types/challenges';
+	import { ChallengeType, type ChallengeData } from '$lib/types/challenges';
 	import { ApiProblemKind } from '$lib/services/api/api-problem';
 
 	// props
@@ -48,6 +48,14 @@
 				calculateMetrics();
 
 				modalOpen = true;
+
+				storeChallenge({
+					quote_id: quote._id,
+					wpm: wordsPerMinute,
+					time_taken: duration,
+					accuracy: accuracy,
+					challenge_type: ChallengeType.COUNTDOWN
+				});
 			}
 		}, 1000);
 	};
@@ -87,7 +95,7 @@
 					wpm: wordsPerMinute,
 					time_taken: duration,
 					accuracy: accuracy,
-					challenge_type: ChallengeType.STANDARD
+					challenge_type: ChallengeType.COUNTDOWN
 				});
 			}
 			return;
@@ -164,7 +172,7 @@
 		inputField.focus();
 	};
 
-	const storeChallenge = async (challenge: StandardChallengeData) => {
+	const storeChallenge = async (challenge: ChallengeData) => {
 		try {
 			const response = await challengeAPI.store(challenge);
 

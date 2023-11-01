@@ -3,7 +3,7 @@ export enum ChallengeType {
 	COUNTDOWN = 'countdown'
 }
 
-export interface StandardChallengeData {
+export interface ChallengeData {
 	quote_id: string;
 	wpm: number;
 	accuracy: number;

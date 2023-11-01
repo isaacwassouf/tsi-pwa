@@ -2,7 +2,7 @@ import type { ApiResponse } from 'apisauce';
 import { ApiProblemKind, getGeneralApiProblem } from '$lib/services/api/api-problem';
 import { BaseAPI } from '$lib/services/api/base-api';
 import type { EmptyResult } from '$lib/services/api/api.types';
-import type { ChallengeSortings, StandardChallengeData } from '$lib/types/challenges';
+import type { ChallengeSortings, ChallengeData } from '$lib/types/challenges';
 import type { ChallengeIndexResult, ChallengeIndexWraper } from './types/challenges';
 
 export class ChallengeAPI extends BaseAPI {
@@ -29,7 +29,7 @@ export class ChallengeAPI extends BaseAPI {
 		}
 	}
 
-	async store(challenge: StandardChallengeData): Promise<EmptyResult> {
+	async store(challenge: ChallengeData): Promise<EmptyResult> {
 		try {
 			const response: ApiResponse<any> = await this.api.apisauce.post(`challenges`, {
 				...challenge
