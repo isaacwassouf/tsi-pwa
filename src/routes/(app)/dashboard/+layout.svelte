@@ -91,7 +91,7 @@
 			<div class="flex items-center">
 				<div class="flex items-center ml-3">
 					<Avatar class="acs" src={avatarURL} dot={{ color: 'green' }} />
-					<Dropdown triggeredBy=".acs">
+					<Dropdown triggeredBy=".acs" placement="bottom-start">
 						<div slot="header" class="px-4 py-2">
 							<span class="block text-sm text-gray-900 dark:text-white">{$userStore.name}</span>
 							<span class="block truncate text-sm font-medium">{$userStore.email}</span>
