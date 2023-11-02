@@ -25,3 +25,14 @@ export interface ChallengeIndexWraper {
 }
 
 export type ChallengeIndexResult = { kind: 'ok'; data: ChallengeIndexWraper } | GeneralApiProblem;
+
+export interface ChallengeAreaChart {
+	wpm: number;
+	taken_at: string;
+};
+
+export interface ChallengeAreaChartWraper {
+	challenges: ChallengeAreaChart[];
+}
+
+export type ChallengeAreaChartDataResult = { kind: 'ok'; data: ChallengeAreaChartWraper } | GeneralApiProblem;

@@ -24,3 +24,5 @@ export interface ChallengeSortings {
 	sortBy: ChallengeSortingBy;
 	sortDirection: SortingDirection;
 }
+
+export type TimeWindow = 'today' | 'week' | 'month';

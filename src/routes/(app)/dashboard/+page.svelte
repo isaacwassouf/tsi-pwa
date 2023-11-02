@@ -1,7 +1,13 @@
 <script lang="ts">
+	import LineChart from '$lib/components/dashboard/LineChart.svelte';
 	import { ApiProblemKind } from '$lib/services/api/api-problem';
 	import { ChallengeAPI } from '$lib/services/api/challenge-api';
-	import type { ChallengeIndex, ChallengeIndexResult } from '$lib/services/api/types/challenges';
+	import type {
+		ChallengeAreaChart,
+		ChallengeAreaChartDataResult,
+		ChallengeIndex,
+		ChallengeIndexResult
+	} from '$lib/services/api/types/challenges';
 	import {
 		ChallengeType,
 		type ChallengeSortings,
@@ -57,7 +63,11 @@
 </script>
 
 <div class="flex gap-4">
-	<div class="w-1/2">
+	<div class="w-1/3">
+		<LineChart />
+	</div>
+
+	<div class="w-2/3">
 		{#if loadingChallenges}
 			<div class="h-full flex justify-center items-center">
 				<div role="status">
@@ -229,6 +239,4 @@
 			</div>
 		{/if}
 	</div>
-
-	<div class="w-1/2" />
 </div>
