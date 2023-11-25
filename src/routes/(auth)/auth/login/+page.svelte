@@ -5,7 +5,7 @@
 	import { extractAPIErrorMessages } from '$lib/utils/extractErrorMessages';
 	import { goto } from '$app/navigation';
 	import type { EmptyResult } from '$lib/services/api/api.types';
-	import type { VerifiedUserResult } from '$lib/services/api/types/authentication';
+	import type { VerifiedUserResult, loginResult } from '$lib/services/api/types/authentication';
 	import { user } from '$lib/stores/user';
 
 	// variables
@@ -23,8 +23,11 @@
 		submittingForm = true;
 
 		try {
-			const result: EmptyResult = await authAPI.login(formData);
-			if (result.kind === ApiProblemKind.ok) {
+			const loginResult: loginResult = await authAPI.login(formData);
+			if (loginResult.kind === ApiProblemKind.ok) {
+				// set the access token in the the localstorage
+				localStorage.setItem('access_token', loginResult.data.access_token);
+
 				// set the user in the store
 				const result: VerifiedUserResult = await authAPI.verify();
 				if (result.kind === ApiProblemKind.ok) {
@@ -37,8 +40,8 @@
 				// redirect to the home page
 				goto('/dashboard');
 			} else {
-				submitErrors = extractAPIErrorMessages(result.error);
-				console.warn(result);
+				submitErrors = extractAPIErrorMessages(loginResult.error);
+				console.warn(loginResult);
 			}
 		} catch (e) {
 			console.warn(e);

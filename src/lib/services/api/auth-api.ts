@@ -3,33 +3,14 @@ import { ApiProblemKind, getGeneralApiProblem } from '$lib/services/api/api-prob
 import { BaseAPI } from '$lib/services/api/base-api';
 import type { EmptyResult } from '$lib/services/api/api.types';
 import type { LoginFormData, RegisterationFormData } from '$lib/types/authentication';
-import type { VerifiedUserResult } from './types/authentication';
+import type { VerifiedUserResult, loginResult } from './types/authentication';
 
 export class AuthAPI extends BaseAPI {
 	constructor() {
 		super();
 	}
-
-	async csrfCookie(): Promise<EmptyResult> {
-		try {
-			const response: ApiResponse<any> = await this.api.apisauce.get(`sanctum/csrf-cookie`);
-
-			if (!response.ok) {
-				const problem = getGeneralApiProblem(response);
-				if (problem) return problem;
-			}
-
-			return { kind: ApiProblemKind.ok };
-		} catch (e) {
-			return { kind: ApiProblemKind.badData, error: null };
-		}
-	}
-
 	async register(registerFormData: RegisterationFormData): Promise<EmptyResult> {
 		try {
-			// send a GET request to /sanctum/csrf-cookie to get a CSRF token
-			await this.csrfCookie();
-
 			// send a POST request to /auth/login to login
 			const response: ApiResponse<any> = await this.api.apisauce.post(`auth/register`, {
 				first_name: registerFormData.firstName,
@@ -50,11 +31,8 @@ export class AuthAPI extends BaseAPI {
 		}
 	}
 
-	async login(loginFormData: LoginFormData): Promise<EmptyResult> {
+	async login(loginFormData: LoginFormData): Promise<loginResult> {
 		try {
-			// send a GET request to /sanctum/csrf-cookie to get a CSRF token
-			await this.csrfCookie();
-
 			// send a POST request to /auth/login to login
 			const response: ApiResponse<any> = await this.api.apisauce.post(`auth/login`, {
 				email: loginFormData.email,
@@ -66,7 +44,9 @@ export class AuthAPI extends BaseAPI {
 				if (problem) return problem;
 			}
 
-			return { kind: ApiProblemKind.ok };
+			const data = response.data;
+
+			return { kind: ApiProblemKind.ok, data };
 		} catch (e) {
 			return { kind: ApiProblemKind.badData, error: null };
 		}
