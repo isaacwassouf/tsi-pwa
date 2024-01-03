@@ -32,8 +32,14 @@
 	const logoutUser = async () => {
 		try {
 			const result: EmptyResult = await authAPI.logout();
-
 			if (result.kind === ApiProblemKind.ok) {
+				// clear the user store
+				userStore.set(null);
+
+				// clear the local storage token
+				localStorage.removeItem('access_token');
+
+				// redirect to login page
 				goto('/auth/login');
 			} else {
 				console.log(result.error);
@@ -43,7 +49,7 @@
 		}
 	};
 
-	onMount(() => {
+	onMount(async () => {
 		loadAvatar();
 	});
 </script>
@@ -76,15 +82,10 @@
 						/>
 					</svg>
 				</button>
-				<a href="https://flowbite.com" class="flex ml-2 md:mr-24">
-					<img
-						src="https://flowbite.com/docs/images/logo.svg"
-						class="h-8 mr-3"
-						alt="FlowBite Logo"
-					/>
+				<a href="/dashboard" class="flex ml-2 md:mr-24">
 					<span
 						class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white"
-						>Flowbite</span
+						>Typing Improvement</span
 					>
 				</a>
 			</div>
