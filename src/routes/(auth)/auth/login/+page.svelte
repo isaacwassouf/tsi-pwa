@@ -94,21 +94,6 @@
 		{/if}
 	</div>
 
-	<div class="flex items-start">
-		<div class="flex items-start">
-			<div class="flex items-center h-5">
-				<input
-					id="remember"
-					type="checkbox"
-					value=""
-					class="w-4 h-4 border border-gray-300 rounded bg-gray-50 text-sky-700 focus:ring-3 focus:ring-sky-700 dark:bg-gray-700 dark:border-gray-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 dark:text-sky-700 dark:focus:ring-sky-700 dark:focus:border-sky-700"
-				/>
-			</div>
-			<label for="remember" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-				>Remember me</label
-			>
-		</div>
-	</div>
 	<button
 		type="submit"
 		class="w-full text-white bg-sky-700 hover:bg-sky-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-sky-700 dark:hover:bg-sky-600"
