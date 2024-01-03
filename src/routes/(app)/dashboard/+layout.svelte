@@ -33,14 +33,14 @@
 		try {
 			const result: EmptyResult = await authAPI.logout();
 			if (result.kind === ApiProblemKind.ok) {
-				// clear the user store
-				userStore.set(null);
-
-				// clear the local storage token
-				localStorage.removeItem('access_token');
-
 				// redirect to login page
-				goto('/auth/login');
+				goto('/auth/login').then(() => {
+					// clear the user store
+					userStore.set(null);
+
+					// clear the local storage token
+					localStorage.removeItem('access_token');
+				});
 			} else {
 				console.log(result.error);
 			}
